@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>try a dropdown w/ bootstrap</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Link to Jquery -->
+	<script
+  	 src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+ 	 integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+ 	 crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<!-- link to typeahead -->
+    <script type="text/javascript" src="bower_components/typeahead.js/dist/typeahead.bundle.min.js"></script>
+
+    <script type="text/javascript">
+
+
+		// var tags = bloodhound.get(myQuery, sync, async);
+
+		// function sync(datums) {
+		//   console.log('datums from `local`, `prefetch`, and `#add`');
+		//   console.log(datums);
+		// }
+
+		// function async(datums) {
+		//   console.log('datums from `remote`');
+		//   console.log(datums);
+		// }
+
+
+    	$(document).ready(function(){
+
+    		var tags = new Bloodhound({
+  			local: tags,
+ 			 queryTokenizer: Bloodhound.tokenizers.whitespace,
+ 			 datumTokenizer: Bloodhound.tokenizers.whitespace
+			});
+
+    		$('#bloodhound .typeahead').typeahead({
+    			minLength: 1,
+    			highlight: true
+    		},
+    		{
+    			name: 'tags',
+    			source: tags
+    		});
+
+    		var tags = ['tag 1', 'tag 2', 'tag 3'];
+    	});
+    </script>
+</head>
+<body>
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="input-group">
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tags<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="#">Tag 1</a></li>
+						<li><a href="#">Tag 2</a></li>
+						<li><a href="#">Tag 3</a></li>
+					</ul>
+				</div>
+  				<!-- <span class="input-group-addon" id="basic-addon1">@</span> -->
+  				<div id="bloodhound">
+  					<input type="text" class="form-control typeahead" placeholder="Tag Name" aria-describedby="basic-addon1">
+  				</div>
+			</div>
+		</div>
+		
+	</div>
+
+</body>
+</html>
